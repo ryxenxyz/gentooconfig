@@ -1,0 +1,132 @@
+############################################
+# GENERAL
+############################################
+
+backend = "glx";
+experimental-backends = true;
+
+vsync = true;
+dithered-present = false;
+
+detect-rounded-corners = true;
+detect-client-opacity = true;
+
+############################################
+# SHADOWS
+############################################
+
+shadow = true;
+shadow-radius = 17;
+shadow-offset-x = -7;
+shadow-offset-y = -7;
+
+############################################
+# FADING
+############################################
+
+fading = true;
+fade-in-step = 0.02;
+fade-out-step = 0.02;
+
+############################################
+# CORNERS
+############################################
+
+corner-radius = 15;
+
+############################################
+# BLUR
+############################################
+
+blur: {
+    method = "dual_kawase";
+    size = 20;
+    deviation = 10;
+};
+
+############################################
+# GLOBAL TRANSPARENCY
+############################################
+
+############################################
+# ANIMATIONS
+############################################
+
+animations = true;
+
+# When a window appears
+animation-for-open-window = "zoom";
+
+# When a window disappears
+animation-for-unmap-window = "zoom";
+
+# When a window is minimized / restored
+animation-for-map-window = "zoom";
+animation-for-unmap-window = "zoom";
+
+# When workspaces / desktops switch
+animation-for-workspace-switch = "slide";
+
+
+# make windows MUCH clearer
+inactive-opacity = 0.55;
+active-opacity   = 0.70;
+
+# OPTIONAL – if you want ALL apps to follow opacity
+# opacity-rule = ["80:class_g = '*'"];
+
+############################################
+# WINDOW RULES
+############################################
+
+rules: (
+
+    {
+        match = "window_type = 'tooltip'";
+        opacity = 0.70;
+    },
+
+    {
+        match = "window_type = 'dnd'";
+        opacity = 0.70;
+        shadow = false;
+    },
+
+    {
+        match = "window_type = 'popup_menu'";
+        opacity = 0.70;
+    },
+
+    {
+        match = "window_type = 'dropdown_menu'";
+        opacity = 0.70;
+    },
+
+    ########################################
+    # NORMAL WINDOWS (MORE TRANSPARENT)
+    ########################################
+    {
+        match = "window_type = 'normal'";
+        blur-background = true;
+        opacity = 0.70;     # <-- more transparent
+        shadow = true;
+    },
+
+    ########################################
+    # PANELS / DOCKS
+    ########################################
+    {
+        match = "window_type = 'dock'";
+        opacity = 0.90;
+        blur-background = false;
+        shadow = false;
+    },
+
+    ########################################
+    # CONKY
+    ########################################
+    {
+        match = "class_g = 'Conky'";
+        opacity = 1.0;
+    }
+);
